@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPhotos } from "../baseUrl";
+import { getPhotos, ImageApi } from "../baseUrl";
 import SeatchBar from "../SearchBar/SeatchBar";
 import "./App.css";
 import ImageGallery from "../ImageGallery/ImageGallery";
@@ -8,17 +8,25 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
+export interface Image {
+  id: number;
+  alt_description: string;
+  url: {
+    small: string;
+    regular: string;
+  };
+}
 function App() {
-  const [photos, setPhotos] = useState([]);
-  const [isLoader, setIsLoader] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [submitQuery, setSubmitQuery] = useState("");
-  const [totalPage, setTotalPage] = useState(0);
-  const [image, setImage] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [photos, setPhotos] = useState<Image[]>([]);
+  const [isLoader, setIsLoader] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [submitQuery, setSubmitQuery] = useState<string>("");
+  const [totalPage, setTotalPage] = useState<number | boolean>(0);
+  const [image, setImage] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const openModal = (imageUrl) => {
+  const openModal = (imageUrl: string) => {
     setImage(imageUrl);
     setIsOpen(true);
   };
@@ -49,7 +57,7 @@ function App() {
     fetchPhotos();
   }, [page, submitQuery]);
 
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (data: string) => {
     setSubmitQuery(data);
     setPage(1);
     setPhotos([]);

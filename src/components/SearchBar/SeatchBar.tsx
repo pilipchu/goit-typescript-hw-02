@@ -1,7 +1,13 @@
 import { Field, Form, Formik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./SeatchBar.module.css";
-export default function SeatchBar({ onSubmit }) {
+import { FC } from "react";
+
+interface PropsSeatchBar {
+  onSubmit: (values: string) => void;
+}
+
+const SeatchBar: FC<PropsSeatchBar> = ({ onSubmit }) => {
   return (
     <header>
       <Formik
@@ -15,7 +21,12 @@ export default function SeatchBar({ onSubmit }) {
           actions.resetForm;
         }}
       >
-        <Form className={css.form}>
+        <Form
+          className={css.form}
+          placeholder={undefined}
+          onPointerEnterCapture={undefined}
+          onPointerLeaveCapture={undefined}
+        >
           <Field
             className={css.input}
             type="text"
@@ -30,4 +41,6 @@ export default function SeatchBar({ onSubmit }) {
       <Toaster />
     </header>
   );
-}
+};
+
+export default SeatchBar;

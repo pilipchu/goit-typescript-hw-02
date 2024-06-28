@@ -1,5 +1,9 @@
 import css from "./LoadMoreBtn.module.css";
-export default function LoadMoreBtn({ newSubmit }) {
+
+interface LoadMore {
+  newSubmit: () => void;
+}
+export default function LoadMoreBtn({ newSubmit }: LoadMore) {
   return (
     <>
       <button className={css.btn} onClick={newSubmit}>

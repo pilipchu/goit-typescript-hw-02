@@ -20,8 +20,14 @@ const customStyles = {
   },
 };
 
+type PropsModal = {
+  image: string;
+  isOpen: boolean;
+  isClose: () => void;
+};
+
 Modal.setAppElement("#root");
-export default function ImageModal({ image, isOpen, isClose }) {
+export default function ImageModal({ image, isOpen, isClose }: PropsModal) {
   return (
     <Modal isOpen={isOpen} onRequestClose={isClose} style={customStyles}>
       <img className={css.img} src={image} alt="Large" />

@@ -11,10 +11,10 @@ interface PropsGallery {
 const ImageGallery: FC<PropsGallery> = ({ photos, open }) => {
   return (
     <ul>
-      {photos.map(({ id, url, alt_description }) => (
+      {photos.map(({ id, urls, alt_description }) => (
         <li className={css.link} key={id}>
           <ImageCard
-            url={url}
+            url={urls}
             alt_description={alt_description}
             onClick={open}
           />

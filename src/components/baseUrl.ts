@@ -8,7 +8,7 @@ export interface ImageApi {
   results: {
     id: number;
     alt_description: string;
-    url: {
+    urls: {
       small: string;
       regular: string;
     };

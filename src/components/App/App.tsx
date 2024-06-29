@@ -11,7 +11,7 @@ import ImageModal from "../ImageModal/ImageModal";
 export interface Image {
   id: number;
   alt_description: string;
-  url: {
+  urls: {
     small: string;
     regular: string;
   };
